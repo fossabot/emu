@@ -4,9 +4,14 @@ node_js:
 cache:
   directories:
     - node_modules
+before_install:
+  - npm install -g greenkeeper-lockfile@1
 before_script:
+  - greenkeeper-lockfile-update
   - npm install babel-core@7.0.0-bridge.0 # Fixme. Wait for babel-jest update
 script:
   - npm run lint:css
   - npm run lint:ts
   - npm test
+after_script:
+  - greenkeeper-lockfile-upload
